@@ -1,0 +1,15 @@
+import type { WeatherResponse } from "../types/weatherTypes";        
+
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
+export async function getWeather(city: string): Promise<WeatherResponse> {
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+    )
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch weather data!");    
+    }
+
+    return response.json();
+}
