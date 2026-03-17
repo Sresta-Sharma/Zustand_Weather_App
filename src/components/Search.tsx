@@ -8,7 +8,7 @@ export default function Search() {
 
   const handleSearch = () => {
     if (!city.trim()) return
-    fetchWeather(city)
+    fetchWeather({ city })
   }
 
   return (

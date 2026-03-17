@@ -6,7 +6,31 @@ export default function WeatherCard() {
   const loading = useWeatherStore((state) => state.loading)
   const error = useWeatherStore((state) => state.error)
 
-  if (!weather) return null
+  if (loading) {
+    return (
+      <div className="mt-6 text-center text-mauve-200">
+        Loading weather...
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="mt-16 text-center text-mauve-200">
+        {error}
+      </div>
+    )
+  }
+  
+  if (!weather){
+    return (
+      (
+      <div className="mt-6 text-center text-mauve-200">
+        Getting your location...
+      </div>
+    )
+    )
+  }
   
   const stats = [
   {
@@ -22,22 +46,6 @@ export default function WeatherCard() {
     value: `${weather.main.humidity}%`,
   },
   ]
-
-  if (loading) {
-    return (
-      <div className="mt-6 text-center text-mauve-700">
-        Loading weather...
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="mt-16 text-center text-red-500">
-        {error}
-      </div>
-    )
-  }
 
   return (
 
