@@ -3,12 +3,17 @@ import WeatherSkeleton from "./WeatherSkeleton"
 import WeatherError from "./WeatherError"
 import WeatherInit from "./WeatherInit"
 import { Card, CardContent } from "@/components/ui/card"
+import { useShallow } from "zustand/react/shallow"
 
 export default function WeatherCard() {
 
-  const weather = useWeatherStore((state) => state.weather)
-  const loading = useWeatherStore((state) => state.loading)
-  const error = useWeatherStore((state) => state.error)
+  const { weather, loading, error } = useWeatherStore(
+    useShallow((state) => ({
+      weather: state.weather,
+      loading: state.loading,
+      error: state.error,
+    }))
+  )
 
   if (loading) {
     return (
