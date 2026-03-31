@@ -1,18 +1,14 @@
-interface Props {
-  message: string
-}
-
-export default function WeatherError({ message }: Props) {
+export default function WeatherError({ message }: { message: string }) {
   return (
-    <div className="mt-10 w-full max-w-md text-center">
+    <div className="w-full max-w-md text-center mt-6">
 
-      <div className="bg-red-500/10 border border-red-400/30 rounded-2xl p-4 backdrop-blur">
+      <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-red-400/30 shadow-md">
 
-        <p className="text-red-300 font-semibold mb-2">
+        <p className="text-red-300 text-lg font-semibold mb-2">
           ⚠️ Error
         </p>
 
-        <p className="text-red-200 text-sm">
+        <p className="text-gray-300 text-sm">
           {message}
         </p>
 

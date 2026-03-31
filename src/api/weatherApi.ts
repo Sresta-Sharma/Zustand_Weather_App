@@ -31,8 +31,12 @@ export async function getWeather(
 
     return data
 
-  } catch {
-    // Network or unexpected errors
-    throw new Error("Unable to fetch weather. Check your internet connection.")
-  }
+  } catch (error) {
+      if (error instanceof Error) {
+        // Re-throw known errors
+        throw error
+      }
+      // Network or unexpected errors
+      throw new Error("Unable to fetch weather. Check your internet connection.")
+    }
 }
