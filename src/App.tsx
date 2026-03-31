@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useWeatherStore } from "./store/weatherStore"
 
-import Search from "./components/Search"
-import WeatherCard from "./components/WeatherCard"
+import Search from "./components/common/Search"
+import WeatherCard from "./components/common/WeatherCard"
 
 function App() {
    

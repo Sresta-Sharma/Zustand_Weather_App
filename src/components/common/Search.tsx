@@ -1,5 +1,8 @@
 import { useState } from "react"
-import { useWeatherStore } from "../store/weatherStore"
+import { useWeatherStore } from "../../store/weatherStore"
+
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 export default function Search() {
 
@@ -15,23 +18,22 @@ export default function Search() {
 
     <div className="flex flex-col sm:flex-row gap-2 w-full max-w-md">
 
-      <input
-        className="rounded-3xl px-4 py-2 w-full sm:flex-1 bg-white/20 backdrop-blur border border-white/30 placeholder-gray-300 text-white focus:outline-none transition"
-        type="text"
+      <Input
         placeholder="Enter city"
         value={city}
         onChange={(e) => setCity(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch()
         }}
+        className="rounded-3xl bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0"
       />
 
-      <button
+      <Button type="button"
         onClick={handleSearch}
-        className="bg-blue-700 text-white px-4 py-2 rounded-3xl hover:bg-blue-600 active:scale-95 transition w-full sm:w-auto cursor-pointer"
+        className="rounded-3xl bg-blue-700 hover:bg-blue-600 w-full sm:w-auto cursor-pointer"
       >
         Search
-      </button>
+      </Button>
 
     </div>
   )

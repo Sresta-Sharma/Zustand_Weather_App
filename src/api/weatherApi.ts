@@ -1,5 +1,6 @@
 import type { WeatherResponse } from "../types/weatherTypes";   
-import type { WeatherParams } from "../types/weatherParams"     
+import type { WeatherParams } from "../types/weatherParams"   
+import { mapWeatherError } from "../utils/mapWeatherError"  
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
@@ -19,12 +20,19 @@ export async function getWeather(
     throw new Error("Invalid parameters")
   }
 
-  const response = await fetch(url)
-  const data = await response.json()
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
 
-  if (!response.ok || data.cod !== 200) {
-    throw new Error(data.message || "Failed to fetch weather")
+    // Handle API errors
+    if (!response.ok || data.cod !== 200) {
+      throw new Error(mapWeatherError(data.cod))
+    }
+
+    return data
+
+  } catch {
+    // Network or unexpected errors
+    throw new Error("Unable to fetch weather. Check your internet connection.")
   }
-
-  return data
 }
