@@ -1,4 +1,5 @@
 import { useWeatherStore } from "../store/weatherStore"
+import WeatherSkeleton from "./WeatherSkeleton"
 
 export default function WeatherCard() {
 
@@ -8,9 +9,7 @@ export default function WeatherCard() {
 
   if (loading) {
     return (
-      <div className="mt-6 text-center text-mauve-200">
-        Loading weather...
-      </div>
+      <WeatherSkeleton />
     )
   }
 
